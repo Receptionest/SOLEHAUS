@@ -3,45 +3,6 @@ import { ProductCard } from "@/components/product-card";
 import { Countdown } from "@/components/countdown";
 import { getFeatured, getProducts } from "@/lib/products";
 
-const REVIEWS = [
-  {
-    name: "Thandi M.",
-    badge: "Verified Purchase",
-    date: "September 2026",
-    text: "My combo arrived in two days and both pairs fit perfectly. Wearing them non-stop — the combo deals are unbeatable.",
-  },
-  {
-    name: "Nomsa D.",
-    badge: "Verified Purchase",
-    date: "July 2026",
-    text: "The weave blends beautifully with my natural hair and feels so soft. Easily my favourite buy this year.",
-  },
-  {
-    name: "Lerato M.",
-    badge: "Repeat Customer",
-    date: "July 2026",
-    text: "Bought my first Airforce pair here two years ago and they still look great. Just ordered my second pair.",
-  },
-  {
-    name: "Sipho N.",
-    badge: "Verified Purchase",
-    date: "June 2026",
-    text: "Solid craftsmanship and the sizing guide was spot on. Worth every rand — I'll definitely be back.",
-  },
-  {
-    name: "Zanele K.",
-    badge: "Fast Delivery",
-    date: "April 2026",
-    text: "Ordered on Monday, delivered Wednesday. The courier phoned ahead and everything arrived in perfect condition.",
-  },
-  {
-    name: "Precious M.",
-    badge: "Verified Purchase",
-    date: "March 2026",
-    text: "Smooth from checkout to delivery, with tracking updates the whole way. The whole process was effortless.",
-  },
-];
-
 export default async function HomePage() {
   const [combos, sneakers, sale] = await Promise.all([
     getFeatured(),
@@ -149,35 +110,6 @@ export default async function HomePage() {
           {sneakerSlice.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-        </div>
-      </section>
-
-      <section className="bg-[#f7f4ee] py-16">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
-            <h2 className="text-3xl font-black uppercase tracking-tight">What our customers say</h2>
-            <p className="mt-2 text-sm text-neutral-600">Real reviews from real customers</p>
-          </div>
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {REVIEWS.map((review) => (
-              <article key={review.name} className="rounded-2xl bg-white p-6 shadow-sm">
-                <p className="text-[#eab308]">★★★★★</p>
-                <span className="mt-3 inline-block rounded-full bg-[#dc2626] px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white">
-                  {review.badge}
-                </span>
-                <p className="mt-4 text-sm leading-relaxed text-neutral-700">{review.text}</p>
-                <div className="mt-5 flex items-center gap-3">
-                  <div className="grid h-11 w-11 place-items-center rounded-full bg-[#dc2626] text-sm font-bold text-white">
-                    {review.name[0]}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold">{review.name}</p>
-                    <p className="text-xs text-neutral-400">{review.date}</p>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
 
