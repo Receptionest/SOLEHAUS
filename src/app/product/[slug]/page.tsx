@@ -2,7 +2,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AddToCart } from "@/components/add-to-cart";
 import { ProductCard } from "@/components/product-card";
-import { formatZar } from "@/lib/money";
 import { getProductBySlug, getRelated } from "@/lib/products";
 
 export default async function ProductPage({
@@ -52,18 +51,6 @@ export default async function ProductPage({
           </p>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight">{product.name}</h1>
           <p className="mt-2 text-sm text-neutral-500">{product.color}</p>
-          <div className="mt-4 text-lg">
-            {product.compareAtCents ? (
-              <>
-                <span className="mr-3 text-red-600">{formatZar(product.priceCents)}</span>
-                <span className="text-neutral-400 line-through">
-                  {formatZar(product.compareAtCents)}
-                </span>
-              </>
-            ) : (
-              formatZar(product.priceCents)
-            )}
-          </div>
           <p className="mt-6 max-w-md text-sm leading-relaxed text-neutral-600">
             {product.description}
           </p>

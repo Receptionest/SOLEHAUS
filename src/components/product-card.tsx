@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { formatZar } from "@/lib/money";
 import type { Product } from "@/db/schema";
 
 export function ProductCard({ product }: { product: Product }) {
@@ -28,16 +27,6 @@ export function ProductCard({ product }: { product: Product }) {
           {product.brand}
         </p>
         <h3 className="text-sm font-medium leading-snug group-hover:underline">{product.name}</h3>
-        <p className="text-sm">
-          {product.compareAtCents ? (
-            <>
-              <span className="mr-2 font-semibold text-[#dc2626]">{formatZar(product.priceCents)}</span>
-              <span className="text-neutral-400 line-through">{formatZar(product.compareAtCents)}</span>
-            </>
-          ) : (
-            <span className="font-semibold">{formatZar(product.priceCents)}</span>
-          )}
-        </p>
       </div>
     </Link>
   );

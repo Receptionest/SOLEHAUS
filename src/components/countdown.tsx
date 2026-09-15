@@ -15,14 +15,15 @@ function parts(ms: number) {
 }
 
 export function Countdown() {
-  const [now, setNow] = useState(Date.now());
+  const [now, setNow] = useState<number | null>(null);
 
   useEffect(() => {
+    setNow(Date.now());
     const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
   }, []);
 
-  const p = parts(END - now);
+  const p = parts(now === null ? 0 : END - now);
 
   return (
     <section className="bg-[#111] px-4 py-10 text-center text-white">

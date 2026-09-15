@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { useCart } from "@/components/cart-provider";
 import type { Product } from "@/db/schema";
 import { parseSizes } from "@/lib/sizes";
-import { formatZar } from "@/lib/money";
 
 export function AddToCart({ product }: { product: Product }) {
   const sizes = parseSizes(product.sizes);
@@ -67,9 +66,9 @@ export function AddToCart({ product }: { product: Product }) {
           ? product.dropDate
             ? `Drops ${product.dropDate}`
             : "Coming soon"
-          : added
-            ? "Added to cart"
-            : `Add to cart · ${formatZar(product.priceCents)}`}
+            : added
+              ? "Added to cart"
+              : "Add to cart"}
       </button>
 
       {!disabled ? (

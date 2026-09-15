@@ -2,12 +2,9 @@
 
 import Link from "next/link";
 import { useCart } from "@/components/cart-provider";
-import { formatZar, shippingCentsFor } from "@/lib/money";
 
 export function CartView() {
-  const { items, updateQty, removeItem, subtotalCents } = useCart();
-  const shipping = shippingCentsFor(subtotalCents);
-  const total = subtotalCents + shipping;
+  const { items, updateQty, removeItem } = useCart();
 
   if (!items.length) {
     return (
@@ -59,7 +56,6 @@ export function CartView() {
                 </button>
               </div>
             </div>
-            <p className="text-sm">{formatZar(item.priceCents * item.quantity)}</p>
           </li>
         ))}
       </ul>
@@ -67,16 +63,12 @@ export function CartView() {
         <h2 className="text-[11px] uppercase tracking-[0.22em]">Summary</h2>
         <div className="mt-5 space-y-2 text-sm">
           <div className="flex justify-between">
-            <span>Subtotal</span>
-            <span>{formatZar(subtotalCents)}</span>
+            <span>Items</span>
+            <span>{items.reduce((sum, item) => sum + item.quantity, 0)}</span>
           </div>
           <div className="flex justify-between">
             <span>Delivery</span>
-            <span>{shipping === 0 ? "Free" : formatZar(shipping)}</span>
-          </div>
-          <div className="flex justify-between border-t border-neutral-300 pt-3 text-base font-semibold">
-            <span>Total</span>
-            <span>{formatZar(total)}</span>
+            <span>Calculated at checkout</span>
           </div>
         </div>
         <Link
