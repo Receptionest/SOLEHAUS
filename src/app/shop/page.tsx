@@ -42,8 +42,6 @@ export default async function ShopPage({
 
   const sortLinks = [
     ["newest", "Newest"],
-    ["price-asc", "Price: low to high"],
-    ["price-desc", "Price: high to low"],
     ["name", "Name"],
   ] as const;
 

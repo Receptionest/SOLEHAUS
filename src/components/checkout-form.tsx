@@ -3,7 +3,6 @@
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/components/cart-provider";
-import { formatZar, shippingCentsFor } from "@/lib/money";
 
 const PROVINCES = [
   "Eastern Cape",
@@ -18,9 +17,7 @@ const PROVINCES = [
 ];
 
 export function CheckoutForm() {
-  const { items, subtotalCents, clear } = useCart();
-  const shipping = shippingCentsFor(subtotalCents);
-  const total = subtotalCents + shipping;
+  const { items, clear } = useCart();
   const router = useRouter();
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
@@ -102,7 +99,7 @@ export function CheckoutForm() {
           disabled={pending}
           className="w-full rounded-full bg-[#dc2626] py-3.5 text-[12px] font-bold uppercase tracking-[0.22em] text-white disabled:opacity-60"
         >
-          {pending ? "Placing order…" : `Place order · ${formatZar(total)}`}
+          {pending ? "Placing order…" : "Place order"}
         </button>
       </div>
 
@@ -119,22 +116,13 @@ export function CheckoutForm() {
                   {item.size} · Qty {item.quantity}
                 </p>
               </div>
-              <p className="text-sm">{formatZar(item.priceCents * item.quantity)}</p>
             </li>
           ))}
         </ul>
         <div className="mt-4 space-y-2 text-sm">
           <div className="flex justify-between">
-            <span>Subtotal</span>
-            <span>{formatZar(subtotalCents)}</span>
-          </div>
-          <div className="flex justify-between">
             <span>Delivery</span>
-            <span>{shipping === 0 ? "Free" : formatZar(shipping)}</span>
-          </div>
-          <div className="flex justify-between border-t border-neutral-200 pt-3 text-base font-semibold">
-            <span>Total</span>
-            <span>{formatZar(total)}</span>
+            <span>Calculated after checkout</span>
           </div>
         </div>
       </aside>

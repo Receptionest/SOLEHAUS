@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ProductCard } from "@/components/product-card";
 import { Countdown } from "@/components/countdown";
 import { getFeatured, getProducts } from "@/lib/products";
-import { formatZar } from "@/lib/money";
 
 const REVIEWS = [
   {
@@ -186,7 +185,7 @@ export default async function HomePage() {
         <div className="rounded-3xl bg-[#111] px-8 py-10 text-white md:flex md:items-center md:justify-between">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#e8d9b8]">
-              From {formatZar(saleSlice[0]?.priceCents ?? 154900)}
+              Best value
             </p>
             <h2 className="mt-2 text-3xl font-black uppercase">Ready for a combo?</h2>
             <p className="mt-2 max-w-md text-sm text-white/70">

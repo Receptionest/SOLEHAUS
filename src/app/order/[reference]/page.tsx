@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { db } from "@/db";
 import { orderItems, orders } from "@/db/schema";
 import { eq } from "drizzle-orm";
-import { formatZar } from "@/lib/money";
 
 export default async function OrderPage({
   params,
@@ -40,22 +39,13 @@ export default async function OrderPage({
                   {item.size} · Qty {item.quantity}
                 </p>
               </div>
-              <p className="text-sm">{formatZar(item.priceCents * item.quantity)}</p>
             </li>
           ))}
         </ul>
         <div className="space-y-1 border-t border-neutral-200 px-5 py-4 text-sm">
           <div className="flex justify-between">
-            <span>Subtotal</span>
-            <span>{formatZar(order.subtotalCents)}</span>
-          </div>
-          <div className="flex justify-between">
             <span>Delivery</span>
-            <span>{order.shippingCents === 0 ? "Free" : formatZar(order.shippingCents)}</span>
-          </div>
-          <div className="flex justify-between font-semibold">
-            <span>Total</span>
-            <span>{formatZar(order.totalCents)}</span>
+            <span>We&apos;ll confirm delivery details by email</span>
           </div>
         </div>
       </div>
